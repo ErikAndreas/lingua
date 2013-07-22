@@ -4,7 +4,28 @@ lingua
 Angular i18n library wrapping Jed which allows for gettext-style support in markup (html and javascript) supporting singular, plural and interpolation/sprintf.
 
 ## Tooling
-xgettext equivalent and .po -> json conversion) at [lingua-tooling](https://github.com/ErikAndreas/lingua-tooling)
+###equirements:
+1. python + pybabel + jinja2
+2. nodejs + >npm install -g po2json
+
+###Simple babel.cfg file:
+  [javascript:*.js]
+  encoding = utf-8
+
+  [jinja2: *.html]
+  encoding = utf-8
+
+###Workflow:
+####Generate .pot file:
+  >pybabel extract -F babel.cfg -k _n:1,2 -k _ -o translations/messages.pot . partials js
+
+####Translations
+tool like poedit to create a catalog and make translations (outputs .po/.mo files)
+
+####Generate .json
+   >po2json translations/sv-se.po l_sv-se.json
+
+All of the above wrapped up for grunt at [grunt-lingua](https://github.com/ErikAndreas/grunt-lingua)
 
 ## Dependencies
 Included in /vendor
