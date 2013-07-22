@@ -1,12 +1,16 @@
 lingua
 ======
 
-Angular i18n library wrapping Jed (gettext for js).
+Angular i18n library wrapping Jed which allows for gettext-style support in markup (html and javascript) supporting singular, plural and interpolation/sprintf.
 
-Tooling (xgettext equivalent and .po -> json conversion) at [lingua-tooling](https://github.com/ErikAndreas/lingua-tooling)
+## Tooling
+xgettext equivalent and .po -> json conversion) at [lingua-tooling](https://github.com/ErikAndreas/lingua-tooling)
+
 ## Dependencies
+Included in /vendor
 * [Jed](https://github.com/SlexAxton/Jed)
 * [Microajax](https://code.google.com/p/microajax/)
+
 ## Usage
 Usage in html/partial/view
 
