@@ -4,11 +4,9 @@ lingua
 Angular i18n library wrapping Jed (gettext for js).
 
 Tooling (xgettext equivalent and .po -> json conversion) at [lingua-tooling](https://github.com/ErikAndreas/lingua-tooling)
-
 ## Dependencies
 * [Jed](https://github.com/SlexAxton/Jed)
 * [Microajax](https://code.google.com/p/microajax/)
-
 ## Usage
 Usage in html/partial/view
 
@@ -46,24 +44,20 @@ angular.module('modulename').run(['$rootScope',...,'linguaService',function($roo
 }]);
 ```
 
-And wrap it up from your page
+And wrap it up on your page
 ```
 <!doctype html>
 <html lang="en" xmlns:ng="http://angularjs.org"> <!-- manual bootstrap so no ng-app -->
 ...
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
-  <script src="js/app.js"></script>
-  <script src="js/controllers.js"></script>
-  <script src="js/services.js"></script>
-  <script src="js/directives.js"></script>
+  ...
   <script src="js/lingua.js"></script>
   <script src="js/vendor/jed.js"></script>
   <script src="js/vendor/microajax.js"></script>
   <script>
   angular.element(document).ready(function() {
-    console.log('angular doc ready');
     Lingua.init(document, function() {
-      angular.bootstrap(document, ['swl']);
+      angular.bootstrap(document, ['modulename']);
     });
   });
   </script>
