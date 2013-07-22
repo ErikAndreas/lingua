@@ -3,9 +3,13 @@ lingua
 
 Angular i18n library wrapping Jed (gettext for js).
 
-Tooling (xgettext equivalent and .po -> json conversion) at [lingua-tooling](https://github.com/ErikAndreas/linga-tooling)
+Tooling (xgettext equivalent and .po -> json conversion) at [lingua-tooling](https://github.com/ErikAndreas/lingua-tooling)
 
+## Dependencies
+* [Jed](https://github.com/SlexAxton/Jed)
+* [Microajax](https://code.google.com/p/microajax/)
 
+## Usage
 Usage in html/partial/view
 
 ```
@@ -19,7 +23,7 @@ Usage in service/controller
 
 ```
 // sample usage in Angular service
-angular.module('swl').factory('artistAlbumModelService',['linguaService', ... ,function(linguaService, ...) {
+angular.module('modulename').factory('artistAlbumModelService',['linguaService', ... ,function(linguaService, ...) {
   addArtistAlbum:function(ar,al) {
     if (artistAlbumModelService.containsArtistAlbum(ar,al)) {
        statusService.add('error',linguaService._("Skipping duplicate, %1$s %2$s is already in the list",[ar,al]));
@@ -27,7 +31,42 @@ angular.module('swl').factory('artistAlbumModelService',['linguaService', ... ,f
 }]);
 
 // sample usage in Angular controller
-angular.module('swl').controller('SettingsCtrl',['$scope', ..., function($scope, ...) {
+angular.module('modulename').controller('SettingsCtrl',['$scope', ..., function($scope, ...) {
   statusService.add('info',$scope._("import complete"));
 }]);
+```
+
+Initialize the module
+```
+// Angular init stuff
+angular.module('modulename').run(['$rootScope',...,'linguaService',function($rootScope,...,linguaService) {
+  $rootScope._ = linguaService._;
+  $rootScope._n = linguaService._n;
+  ...
+}]);
+```
+
+And wrap it up from your page
+```
+<!doctype html>
+<html lang="en" xmlns:ng="http://angularjs.org"> <!-- manual bootstrap so no ng-app -->
+...
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/directives.js"></script>
+  <script src="js/lingua.js"></script>
+  <script src="js/vendor/jed.js"></script>
+  <script src="js/vendor/microajax.js"></script>
+  <script>
+  angular.element(document).ready(function() {
+    console.log('angular doc ready');
+    Lingua.init(document, function() {
+      angular.bootstrap(document, ['swl']);
+    });
+  });
+  </script>
+</body>
+</html>
 ```
