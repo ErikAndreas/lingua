@@ -1,7 +1,7 @@
 lingua
 ======
 
-Angular i18n library wrapping Jed which allows for gettext-style support in markup (html and javascript) supporting singular, plural and interpolation/sprintf.
+Angular i18n library wrapping [Jed](https://github.com/SlexAxton/Jed) which allows for gettext-style support in html and javascript. Supporting singular, plural and interpolation/sprintf. Full stack tooling, like xgettext for text extraction, packaged for use with Grunt at [grunt-lingua](https://github.com/ErikAndreas/grunt-lingua)
 
 ## Dependencies
 Included in /vendor
@@ -20,7 +20,7 @@ Usage in html/partial/view
 
 Usage in service/controller
 
-```
+```js
 // sample usage in Angular service
 angular.module('modulename').factory('artistAlbumModelService',['linguaService', ... ,function(linguaService, ...) {
   addArtistAlbum:function(ar,al) {
@@ -36,7 +36,7 @@ angular.module('modulename').controller('SettingsCtrl',['$scope', ..., function(
 ```
 
 Initialize the module
-```
+```js
 // Angular init stuff
 angular.module('modulename').run(['$rootScope',...,'linguaService',function($rootScope,...,linguaService) {
   $rootScope._ = linguaService._;
@@ -79,12 +79,16 @@ And wrap it up on your page
 
 ###Workflow:
 ####Generate .pot file:
-`$ pybabel extract -F babel.cfg -k _n:1,2 -k _ -o translations/messages.pot . partials js`
+```shell
+pybabel extract -F babel.cfg -k _n:1,2 -k _ -o translations/messages.pot . partials js
+```
 
 ####Translations
 tool like poedit to create a catalog and make translations (outputs .po/.mo files)
 
 ####Generate .json
-`$ po2json translations/sv-se.po l_sv-se.json`
+```shell
+po2json translations/sv-se.po l_sv-se.json
+```
 
 All of the above wrapped up for grunt at [grunt-lingua](https://github.com/ErikAndreas/grunt-lingua)
