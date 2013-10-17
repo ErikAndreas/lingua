@@ -11,7 +11,7 @@ Included in /vendor
 ## Usage
 Usage in html/partial/view
 
-```
+```html
 <!-- sample usage html/partial/view markup -->
 {{_("Your last.fm username")}}:<br/>
 <input ng-model="lastFMuserName"/> <button ng-click="setLastFMuserName()">{{_("Set")}}</button>
@@ -46,7 +46,7 @@ angular.module('modulename').run(['$rootScope',...,'linguaService',function($roo
 ```
 
 And wrap it up on your page
-```
+```html
 <!doctype html>
 <html lang="en" xmlns:ng="http://angularjs.org"> <!-- manual bootstrap so no ng-app -->
 ...
